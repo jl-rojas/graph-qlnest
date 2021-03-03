@@ -1,15 +1,18 @@
 import { Injectable, ExecutionContext } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { GqlExecutionContext } from '@nestjs/graphql';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { passportJwtSecret } from 'jwks-rsa';
 import * as dotenv from 'dotenv';
+import { AuthService } from './auth.service';
+import { UserEntity } from 'src/users/users.entity';
 
 dotenv.config();
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor() {
+  constructor(
+    private readonly authService: AuthService
+  ) {
     super({
       secretOrKeyProvider: passportJwtSecret({
         cache: true,
@@ -25,7 +28,14 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  validate(payload: unknown): unknown {
-    return payload;
+  async validate(payload: any) {
+    console.log(await payload);
+    
+    return this.authService.validate(payload);
   }
+  // async validate(payload: any) {
+  //   console.log(payload);
+    
+  //   return payload;
+  // }
 }

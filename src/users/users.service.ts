@@ -25,7 +25,7 @@ export class UsersService {
 		return await this.userRespository.find()
   }
   
-  async getUser(id) {
+  async getUser(id: any) {
     return await this.userRespository.findOne(id);
   }
 }

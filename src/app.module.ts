@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { GraphQLModule } from '@nestjs/graphql'
 import { UserModule } from './users/user.module';
-import { AuthzModule } from './authz/authz.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
 	imports: [
@@ -16,7 +16,7 @@ import { AuthzModule } from './authz/authz.module';
       },
     }),
     UserModule,
-    AuthzModule
+    AuthModule
   ],
 })
 export class AppModule {}
