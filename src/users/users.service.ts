@@ -23,6 +23,10 @@ export class UsersService {
 
 	async getUsers () {
 		return await this.userRespository.find()
-	}
+  }
+  
+  async getUser(id) {
+    return await this.userRespository.findOne(id);
+  }
 }
 
