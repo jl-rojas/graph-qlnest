@@ -9,11 +9,7 @@ import { AuthModule } from './auth/auth.module';
     TypeOrmModule.forRoot({}),
 		GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gpl',
-      context: ({ req }) => {
-          return {
-            request: req,
-          };
-      },
+      context: ({req}) => ({req})
     }),
     UserModule,
     AuthModule

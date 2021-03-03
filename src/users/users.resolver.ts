@@ -14,7 +14,8 @@ export class UserResolver {
   @UseGuards(GqlAuthGuard)
 	async users () {
 		return this.userService.getUsers()
-	}
+  }
+  
 
 	@Mutation(() => CreateUserDto)
 	async createUser (@Args('data') data: InputUser) {
