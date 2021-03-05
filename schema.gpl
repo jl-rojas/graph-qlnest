@@ -25,6 +25,8 @@ type Query {
 
 type Mutation {
   createUser(data: InputUser!): CreateUserDto!
+  updateItem(item: InputUpdateItem!, id: String!): ItemDTO!
+  deleteItem(id: String!): ItemDTO!
   createNewItem(data: InputItem!): ItemDTO!
 }
 
@@ -32,6 +34,13 @@ input InputUser {
   name: String!
   email: String!
   role: String!
+}
+
+input InputUpdateItem {
+  name: String!
+  stock: Float!
+  price: Float!
+  price_preferred: Float!
 }
 
 input InputItem {

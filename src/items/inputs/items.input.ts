@@ -1,13 +1,27 @@
-import { Field, InputType } from '@nestjs/graphql'
+import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class InputItem{
+export class InputItem {
   @Field()
-  readonly name: string
+  readonly name: string;
 
   @Field()
-  readonly stock: number
-  
+  readonly stock: number;
+
   @Field()
-  readonly price: number
+  readonly price: number;
+}
+@InputType()
+export class InputUpdateItem {
+  @Field()
+  readonly name: string;
+
+  @Field()
+  readonly stock: number;
+
+  @Field()
+  readonly price: number;
+
+  @Field()
+  readonly price_preferred: number;
 }
