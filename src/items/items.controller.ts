@@ -32,6 +32,8 @@ export class ItemsController {
     @Args('id') id: string,
     @Args('item') item: InputUpdateItem,
   ) {
+    console.log(id);
+    console.log(item);
     return await this.itemService.updateItem(id, item);
   }
 }

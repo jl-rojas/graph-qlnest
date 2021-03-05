@@ -14,14 +14,14 @@ export class InputItem {
 @InputType()
 export class InputUpdateItem {
   @Field()
-  readonly name: string;
+  readonly name?: string;
 
   @Field()
-  readonly stock: number;
+  readonly stock?: number;
 
   @Field()
-  readonly price: number;
+  readonly price?: number;
 
   @Field()
-  readonly price_preferred: number;
+  readonly price_preferred?: number;
 }

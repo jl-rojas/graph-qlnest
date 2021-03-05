@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 
 import { ItemDTO } from './dto/items.dto';
 import { ItemEntity } from './items.entity';
+import { InputUpdateItem } from './inputs/items.input';
 
 @Injectable()
 export class ItemsService {
@@ -20,7 +21,7 @@ export class ItemsService {
     return await this.itemRepository.findOne(id);
   }
 
-  async updateItem(id: string, item: ItemDTO): Promise<ItemDTO> {
+  async updateItem(id: string, item: InputUpdateItem): Promise<ItemDTO> {
     await this.itemRepository.update(id, { ...item });
     return this.itemRepository.findOne(id);
   }
