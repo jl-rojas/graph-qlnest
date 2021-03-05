@@ -5,7 +5,6 @@ import { ItemDTO } from './dto/items.dto';
 import { ItemsService } from './items.service';
 import { InputItem, InputUpdateItem } from './inputs/items.input';
 import { GqlAuthGuard } from '../auth/graphql-auth.guard';
-import { DeleteResult } from 'typeorm';
 
 @Resolver((of) => ItemEntity)
 export class ItemsResolver {
