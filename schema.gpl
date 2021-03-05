@@ -9,16 +9,33 @@ type CreateUserDto {
   role: String!
 }
 
+type ItemDTO {
+  id: ID!
+  name: String!
+  stock: Int!
+  price: Float!
+  price_preferred: Float!
+}
+
 type Query {
   users: [CreateUserDto!]!
+  items: [ItemDTO!]!
+  item(id: String!): ItemDTO!
 }
 
 type Mutation {
   createUser(data: InputUser!): CreateUserDto!
+  createNewItem(data: InputItem!): ItemDTO!
 }
 
 input InputUser {
   name: String!
   email: String!
   role: String!
+}
+
+input InputItem {
+  name: String!
+  stock: Float!
+  price: Float!
 }

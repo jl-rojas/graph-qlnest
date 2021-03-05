@@ -1,6 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { ObjectType } from '@nestjs/graphql';
 
 @Entity('user')
+@ObjectType()
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string
