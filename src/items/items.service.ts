@@ -17,18 +17,32 @@ export class ItemsService {
     return await this.itemRepository.find();
   }
 
-  async getItem(id: any) {
-    return await this.itemRepository.findOne(id);
+  getItem(id: any): Promise<ItemEntity> {
+    return this.itemRepository.findOne({
+      where: {
+        id,
+      },
+    });
   }
 
   async updateItem(id: string, item: InputUpdateItem): Promise<ItemDTO> {
     await this.itemRepository.update(id, { ...item });
-    return this.itemRepository.findOne(id);
+    return this.itemRepository.findOne({
+      where: {
+        id,
+      },
+    });
   }
 
   async deleteItem(id: any): Promise<any> {
-    let item = this.itemRepository.findOne(id);
-    await this.itemRepository.delete(id);
+    let item = this.itemRepository.findOne({
+      where: {
+        id,
+      },
+    });
+    await this.itemRepository.delete({
+      id,
+    });
     return item;
   }
 
