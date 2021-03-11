@@ -1,13 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { TestingApp } from 'nestjs-bdd';
 import { Repository } from 'typeorm';
-import { ItemsController } from './items.controller';
-import { ItemEntity } from './items.entity';
-import { ItemsService } from './items.service';
+import { ItemsController } from '../items.controller';
+import { ItemEntity } from '../items.entity';
+import { ItemsModule } from '../items.module';
+import { ItemsService } from '../items.service';
+import { ItemsMatcher } from './ItemsMatcher';
 
 describe('ItemsController', () => {
   let itemsController: ItemsController;
   let itemsService: ItemsService;
+  let app = new TestingApp(ItemsModule, [ItemsMatcher]);
+  beforeAll(() => app.start());
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
       controllers: [ItemsController],
@@ -19,7 +24,6 @@ describe('ItemsController', () => {
         },
       ],
     }).compile();
-
     itemsService = moduleRef.get<ItemsService>(ItemsService);
     itemsController = moduleRef.get<ItemsController>(ItemsController);
   });
@@ -27,6 +31,10 @@ describe('ItemsController', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });
+
+  afterAll(() => app.stop());
+
+  app.findInDir('./features');
 
   test('should be defined', () => {
     expect(itemsService).toBeDefined();
